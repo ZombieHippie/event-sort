@@ -1,0 +1,96 @@
+//-calendar = require('../json-feed.json')
+head
+  title MOState Week Events Sorter
+  link(href="vendor/bootstrap.css" rel="stylesheet" type="text/css")
+  link(href='//fonts.googleapis.com/css?family=Bree+Serif|Open+Sans:400italic,700italic,400,700|Raleway:600,100,400,200' rel='stylesheet' type='text/css')
+  link(href="styles.css" rel="stylesheet" type="text/css")
+body(style="width:700rem")
+  #week
+    .day#Monday
+      h2 Monday
+      .cols
+        div
+    .day#Tuesday
+      h2 Tuesday
+      .cols
+        div
+    .day#Wednesday
+      h2 Wednesday
+      .cols
+        div
+    .day#Thursday
+      h2 Thursday
+      .cols
+        div
+    .day#Friday
+      h2 Friday
+      .cols
+        div
+    .day#Saturday
+      h2 Saturday
+      .cols
+        div
+    .day#Sunday
+      h2 Sunday
+      .cols
+        div
+  - var sortedEvents = calendar.feed.entry.filter(
+    - function (a){
+    -   return 
+    -     a.gd$when[0].startTime.length > 10
+    - }).sort(
+    - function (a,b){
+    -   return a.gd$when[0].startTime.localeCompare(b.gd$when[0].startTime);
+    - })
+  each entry in sortedEvents
+    //- ensure current students can go
+    - var currentStudentsInvited = false
+    each who in entry.gd$who
+      if ~who.valueString.indexOf("Students")
+        - currentStudentsInvited = true
+    if currentStudentsInvited  
+      .event
+        .title= entry.title.$t
+        dl
+          dt link
+          dd= entry.id.$t
+          dt desc
+          dd!= entry.content.$t
+          dt contact
+          dd
+            ul
+              each aut in entry.author
+                li
+                  strong= aut.name.$t
+                  | &nbsp; - &nbsp;
+                  span= aut.name.$t
+          dt host
+          dd= entry.gd$who[0].valueString
+          dt links
+          dd
+            ul
+              each link in entry.link
+                li
+                  strong= link.rel
+                  | &nbsp; - &nbsp;
+                  span= link.href
+          dt when
+          dd.when
+            ul
+              each timeSpan in entry.gd$when 
+                li(data-start=timeSpan.startTime
+                   data-end=timeSpan.endTime)
+                  strong.startTime=timeSpan.startTime
+                  | &nbsp; - &nbsp;
+                  span.endTime=timeSpan.endTime
+          dt where
+          dd
+            ul
+              each loc in entry.gd$where
+                li=loc.valueString
+            
+
+  footer
+    script(type="text/javascript" src="vendor/moment-2.10.2.min.js")
+    script(type="text/javascript" src="vendor/jquery-2.1.1.js")
+    script(type="text/javascript" src="script.js")

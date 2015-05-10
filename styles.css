@@ -1,0 +1,36 @@
+body {
+  height: 46in;
+  position: absolute;
+  font-family: 'Open Sans', serif;
+  font-size: 16pt;
+}
+#week {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+#week h2 {
+  font-family: 'Raleway', serif;
+  font-size: 144pt;
+}
+#week .day {
+  width: 16in;
+  height: 100%;
+  float: left;
+}
+#week .day .cols>div {
+  float: left;
+  width: 16in;
+}
+.event {
+  padding: 0.5in;
+  border-top: 1px solid #000;
+}
+.event .big-hour {
+  font-family: 'Open Sans', serif;
+  font-size: 72pt;
+}
+.event .title {
+  font-family: 'Bree Serif', serif;
+  font-size: 72pt;
+}

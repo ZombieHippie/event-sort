@@ -1,0 +1,17 @@
+{
+  "name": "event-sort",
+  "description": "MOState events utility",
+  "version": "0.0.1",
+  "author": "Cole Lawrence (@ZombieHippie)",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZombieHippie/event-sort.git"
+  },
+  "dependencies": {
+    "async": "~0.9",
+    "cheerio": "~0.18",
+    "request": "~2",
+    "suite-to-static": "latest"
+  }
+}
